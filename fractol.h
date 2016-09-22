@@ -6,15 +6,16 @@
 /*   By: cglens <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 00:01:35 by cglens            #+#    #+#             */
-/*   Updated: 2016/09/19 05:59:03 by cglens           ###   ########.fr       */
+/*   Updated: 2016/09/21 05:26:27 by cglens           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
+# include <stdio.h>
+# include <stdlib.h>
 # include "mlx.h"
 # include "../libft/includes/libft.h"
-# include <stdio.h>
 
 typedef struct		s_graph
 {
@@ -37,14 +38,15 @@ typedef struct		s_complex
 
 typedef struct		s_point
 {	
-	float			x0;
-	float			y0;
-	float			x1;
-	float			y1;
-	int 	   	 	zoom;
+	double			x0;
+	double			y0;
+	double			x1;
+	double			y1;
+	int 	   	 	step_x;
+	int				step_y;;
 	int				iter;
-	int				x;
-	int				y;
+	double			x;
+	double			y;
 	int				color;
 	t_complex		c;
 	t_complex		z;
@@ -55,10 +57,10 @@ typedef struct		s_point
 }					t_point;
 
 //void				make(t_point *pt, t_graph *put);
-void				create(t_graph *put/*, t_point *pt*/);
+void				create(t_graph *put, t_point *pt);
 int					event(int key);
 //int					tuto(t_point *pt, t_graph *put);
-void				pixel(t_graph *put, int x, int y);
+void				pixel(t_point *pt, t_graph *put, int x, int y, int i);
 //int					ft_mandelbrot(int iter_max, t_complex z, t_complex c);
 
 #endif
