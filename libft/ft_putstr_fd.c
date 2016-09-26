@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.c                                          :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cglens <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/23 01:24:31 by cglens            #+#    #+#             */
-/*   Updated: 2016/09/26 05:17:03 by cglens           ###   ########.fr       */
+/*   Created: 2015/11/30 17:08:37 by cglens            #+#    #+#             */
+/*   Updated: 2015/12/14 16:36:00 by cglens           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
-#include "../libft/includes/libft.h"
+#include <unistd.h>
 
-int		main(int ac, char **av)
+void	ft_putstr_fd(const char *s, int fd)
 {
-	t_graph		*put;
-	t_point		*pt;
+	int		i;
 
-	put = (t_graph *)malloc(sizeof(t_graph));
-	pt = (t_point *)malloc(sizeof(t_point));
-	/*if (ac != 2)
-		return (0);
-	if (ft_strcmp(av[1], "Julia") != 0 || ft_strcmp(av[1], "Mandelbrot")
-			!= 0 || ft_strcmp(av[1], "Pythagore") != 0)
-		return (0);*/
-	ft_init_mandelbrot(put, pt);
-	return (0);
+	i = 0;
+	while (s[i])
+	{
+		write(fd, &s[i], 1);
+		i++;
+	}
 }

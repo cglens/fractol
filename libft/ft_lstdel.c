@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.c                                          :+:      :+:    :+:   */
+/*   ft_lstdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cglens <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/23 01:24:31 by cglens            #+#    #+#             */
-/*   Updated: 2016/09/26 05:17:03 by cglens           ###   ########.fr       */
+/*   Created: 2015/12/16 17:48:36 by cglens            #+#    #+#             */
+/*   Updated: 2015/12/17 16:34:12 by cglens           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
-#include "../libft/includes/libft.h"
+#include <stdlib.h>
+#include "libft.h"
 
-int		main(int ac, char **av)
+void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
 {
-	t_graph		*put;
-	t_point		*pt;
+	t_list	*p;
 
-	put = (t_graph *)malloc(sizeof(t_graph));
-	pt = (t_point *)malloc(sizeof(t_point));
-	/*if (ac != 2)
-		return (0);
-	if (ft_strcmp(av[1], "Julia") != 0 || ft_strcmp(av[1], "Mandelbrot")
-			!= 0 || ft_strcmp(av[1], "Pythagore") != 0)
-		return (0);*/
-	ft_init_mandelbrot(put, pt);
-	return (0);
+	p = *alst;
+	while (p->next != NULL)
+	{
+		del((p)->content, (p)->content_size);
+		free(p);
+		p = (p)->next;
+	}
+	del((p)->content, (p)->content_size);
+	free(p);
+	*alst = NULL;
 }

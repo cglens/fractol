@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.c                                          :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cglens <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/23 01:24:31 by cglens            #+#    #+#             */
-/*   Updated: 2016/09/26 05:17:03 by cglens           ###   ########.fr       */
+/*   Created: 2015/11/27 16:49:53 by cglens            #+#    #+#             */
+/*   Updated: 2015/12/14 16:30:37 by cglens           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
-#include "../libft/includes/libft.h"
+#include <string.h>
 
-int		main(int ac, char **av)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	t_graph		*put;
-	t_point		*pt;
+	const unsigned char	*s1;
+	size_t				i;
 
-	put = (t_graph *)malloc(sizeof(t_graph));
-	pt = (t_point *)malloc(sizeof(t_point));
-	/*if (ac != 2)
-		return (0);
-	if (ft_strcmp(av[1], "Julia") != 0 || ft_strcmp(av[1], "Mandelbrot")
-			!= 0 || ft_strcmp(av[1], "Pythagore") != 0)
-		return (0);*/
-	ft_init_mandelbrot(put, pt);
+	s1 = (const unsigned char *)s;
+	i = 0;
+	while (i != n)
+	{
+		if (s1[i] == (unsigned char)c)
+			return ((void *)s + i);
+		i++;
+	}
 	return (0);
 }

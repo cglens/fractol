@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.c                                          :+:      :+:    :+:   */
+/*   ft_strmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cglens <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/23 01:24:31 by cglens            #+#    #+#             */
-/*   Updated: 2016/09/26 05:17:03 by cglens           ###   ########.fr       */
+/*   Created: 2015/11/30 16:41:27 by cglens            #+#    #+#             */
+/*   Updated: 2015/12/15 15:49:53 by cglens           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
-#include "../libft/includes/libft.h"
+#include <stdlib.h>
+#include "libft.h"
 
-int		main(int ac, char **av)
+char	*ft_strmap(const char *s, char (*f)(char))
 {
-	t_graph		*put;
-	t_point		*pt;
+	char	*str;
+	int		i;
 
-	put = (t_graph *)malloc(sizeof(t_graph));
-	pt = (t_point *)malloc(sizeof(t_point));
-	/*if (ac != 2)
-		return (0);
-	if (ft_strcmp(av[1], "Julia") != 0 || ft_strcmp(av[1], "Mandelbrot")
-			!= 0 || ft_strcmp(av[1], "Pythagore") != 0)
-		return (0);*/
-	ft_init_mandelbrot(put, pt);
-	return (0);
+	str = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
+	if (s == NULL || f == NULL || str == NULL)
+		return (NULL);
+	i = 0;
+	while (s[i])
+	{
+		str[i] = f(s[i]);
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
 }

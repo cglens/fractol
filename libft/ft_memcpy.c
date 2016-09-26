@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.c                                          :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cglens <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/23 01:24:31 by cglens            #+#    #+#             */
-/*   Updated: 2016/09/26 05:17:03 by cglens           ###   ########.fr       */
+/*   Created: 2015/11/27 16:29:55 by cglens            #+#    #+#             */
+/*   Updated: 2015/12/14 16:31:31 by cglens           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
-#include "../libft/includes/libft.h"
+#include <string.h>
 
-int		main(int ac, char **av)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	t_graph		*put;
-	t_point		*pt;
+	char		*s1;
+	const char	*s2;
+	size_t		i;
 
-	put = (t_graph *)malloc(sizeof(t_graph));
-	pt = (t_point *)malloc(sizeof(t_point));
-	/*if (ac != 2)
-		return (0);
-	if (ft_strcmp(av[1], "Julia") != 0 || ft_strcmp(av[1], "Mandelbrot")
-			!= 0 || ft_strcmp(av[1], "Pythagore") != 0)
-		return (0);*/
-	ft_init_mandelbrot(put, pt);
-	return (0);
+	s1 = (char *)dst;
+	s2 = (const char *)src;
+	i = 0;
+	while (i != n)
+	{
+		s1[i] = s2[i];
+		i++;
+	}
+	return (dst);
 }

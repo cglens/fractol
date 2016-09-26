@@ -6,7 +6,7 @@
 /*   By: cglens <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 00:01:35 by cglens            #+#    #+#             */
-/*   Updated: 2016/09/21 05:26:27 by cglens           ###   ########.fr       */
+/*   Updated: 2016/09/26 05:12:18 by cglens           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct		s_point
 	double			x;
 	double			y;
 	int				color;
+	double			zoom;
 	t_complex		c;
 	t_complex		z;
 	t_complex		step;
@@ -56,11 +57,16 @@ typedef struct		s_point
 
 }					t_point;
 
-//void				make(t_point *pt, t_graph *put);
-void				create(t_graph *put, t_point *pt);
-int					event(int key);
-//int					tuto(t_point *pt, t_graph *put);
+typedef struct		s_fractol
+{
+	t_point			*pt;
+	t_graph			*put;
+}					t_fractol;
+
+void				ft_init_mandelbrot(t_graph *put, t_point *pt);
+int					key_event(int key);
+int					mouse_event(int key, int x, int y, t_fractol *fractol);
 void				pixel(t_point *pt, t_graph *put, int x, int y, int i);
-//int					ft_mandelbrot(int iter_max, t_complex z, t_complex c);
+void				mandel(t_graph *put, t_point *pt);
 
 #endif

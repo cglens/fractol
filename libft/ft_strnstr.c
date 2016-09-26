@@ -1,30 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.c                                          :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cglens <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/23 01:24:31 by cglens            #+#    #+#             */
-/*   Updated: 2016/09/26 05:17:03 by cglens           ###   ########.fr       */
+/*   Created: 2015/11/26 20:03:16 by cglens            #+#    #+#             */
+/*   Updated: 2015/12/14 16:45:32 by cglens           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
-#include "../libft/includes/libft.h"
+#include <string.h>
 
-int		main(int ac, char **av)
+char	*ft_strnstr(const char *s1, const char *s2, size_t n)
 {
-	t_graph		*put;
-	t_point		*pt;
+	int		i;
+	int		j;
+	int		k;
 
-	put = (t_graph *)malloc(sizeof(t_graph));
-	pt = (t_point *)malloc(sizeof(t_point));
-	/*if (ac != 2)
-		return (0);
-	if (ft_strcmp(av[1], "Julia") != 0 || ft_strcmp(av[1], "Mandelbrot")
-			!= 0 || ft_strcmp(av[1], "Pythagore") != 0)
-		return (0);*/
-	ft_init_mandelbrot(put, pt);
+	i = 0;
+	k = 0;
+	if (s2[i] == '\0')
+		return ((char *)s1 + i);
+	while (s1[i] && n != 0)
+	{
+		j = i;
+		while (s1[j] == s2[k] && n != 0 && s2[k])
+		{
+			j++;
+			k++;
+			n--;
+		}
+		n = n + k;
+		if (s2[k] == '\0')
+			return ((char *)s1 + i);
+		k = 0;
+		i++;
+		n--;
+	}
 	return (0);
 }

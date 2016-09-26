@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.c                                          :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cglens <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/23 01:24:31 by cglens            #+#    #+#             */
-/*   Updated: 2016/09/26 05:17:03 by cglens           ###   ########.fr       */
+/*   Created: 2015/11/27 16:57:49 by cglens            #+#    #+#             */
+/*   Updated: 2015/12/15 19:54:43 by cglens           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
-#include "../libft/includes/libft.h"
+#include <string.h>
 
-int		main(int ac, char **av)
+int		ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	t_graph		*put;
-	t_point		*pt;
+	const unsigned char	*src;
+	const unsigned char	*dst;
+	size_t				i;
 
-	put = (t_graph *)malloc(sizeof(t_graph));
-	pt = (t_point *)malloc(sizeof(t_point));
-	/*if (ac != 2)
+	src = (const unsigned char *)s1;
+	dst = (const unsigned char *)s2;
+	i = 0;
+	if (n == 0)
 		return (0);
-	if (ft_strcmp(av[1], "Julia") != 0 || ft_strcmp(av[1], "Mandelbrot")
-			!= 0 || ft_strcmp(av[1], "Pythagore") != 0)
-		return (0);*/
-	ft_init_mandelbrot(put, pt);
-	return (0);
+	while (src[i] && dst[i] && i != n && src[i] == dst[i])
+		i++;
+	if (i == n)
+		i--;
+	return (src[i] - dst[i]);
 }
