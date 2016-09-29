@@ -6,7 +6,7 @@
 /*   By: cglens <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 00:01:35 by cglens            #+#    #+#             */
-/*   Updated: 2016/09/27 18:57:14 by cglens           ###   ########.fr       */
+/*   Updated: 2016/09/29 13:52:41 by cglens           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <math.h>
 # include "mlx.h"
 # include "../libft/includes/libft.h"
+# define SIZELINE put->sizeline
+# define ENDIAN put->endian
 
 typedef struct		s_graph
 {
@@ -49,12 +51,15 @@ typedef struct		s_point
 	double			x;
 	double			y;
 	int				color;
+	int				rgb;
+	int				key;
 	double			zoom;
 	t_complex		c;
 	t_complex		z;
 	t_complex		step;
 	t_complex		origin;
 	t_complex		init;
+	char			*e;
 
 }					t_point;
 
@@ -64,13 +69,16 @@ typedef struct		s_fractol
 	t_graph			*put;
 }					t_fractol;
 
-void				ft_init_mandelbrot(t_graph *put, t_point *pt);
+void				ft_init_mandel(t_graph *put, t_point *pt);
 void				ft_init_julia(t_graph *put, t_point *pt);
-int					key_event(int key);
+int					key_event(int key, t_fractol *fractol);
 int					julia_move(int x, int y, t_fractol *fractol);
 int					mouse_event(int key, int x, int y, t_fractol *fractol);
-void				pixel(t_point *pt, t_graph *put, int x, int y, int i);
-void				ft_mandel(t_graph *put, t_point *pt);
-void				ft_julia(t_graph *put, t_point *pt);
+void				pixel(t_point *pt, t_graph *put, int x, int y);
+void				ft_mandel(t_point *pt);
+void				ft_julia(t_point *pt);
+void				ft_lapin(t_point *pt);
+void				ft_same(t_graph *put, t_point *pt, t_fractol *fractol);
+void				ft_color(int key, t_graph *put, t_point *pt);
 
 #endif

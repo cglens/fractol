@@ -6,13 +6,13 @@
 /*   By: cglens <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/26 05:11:11 by cglens            #+#    #+#             */
-/*   Updated: 2016/09/27 18:57:15 by cglens           ###   ########.fr       */
+/*   Updated: 2016/09/29 13:44:38 by cglens           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	ft_init_mandelbrot(t_graph *put, t_point *pt)
+void	ft_init_mandel(t_graph *put, t_point *pt)
 {
 	t_fractol	*fractol;
 	int			key;
@@ -30,9 +30,7 @@ void	ft_init_mandelbrot(t_graph *put, t_point *pt)
 	put->win_y = (pt->y1 - pt->y0) * pt->zoom;
 	put->mlx = mlx_init();
 	put->win = mlx_new_window(put->mlx, put->win_x, put->win_y, "fractol");
-	ft_mandel(put, pt);
-	mlx_key_hook(put->win, key_event, fractol);
-	mlx_mouse_hook(put->win, mouse_event, fractol);
+	ft_same(put, pt, fractol);
 	mlx_loop(put->mlx);
 }
 
@@ -54,8 +52,6 @@ void	ft_init_julia(t_graph *put, t_point *pt)
 	put->win_y = (pt->y1 - pt->y0) * pt->zoom;
 	put->mlx = mlx_init();
 	put->win = mlx_new_window(put->mlx, put->win_x, put->win_y, "fractol");
-	ft_julia(put, pt);
-	mlx_key_hook(put->win, key_event, fractol);
-	mlx_mouse_hook(put->win, mouse_event, fractol);
+	ft_same(put, pt, fractol);
 	mlx_loop(put->mlx);
 }

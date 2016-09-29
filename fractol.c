@@ -6,7 +6,7 @@
 /*   By: cglens <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/23 01:24:31 by cglens            #+#    #+#             */
-/*   Updated: 2016/09/27 18:05:11 by cglens           ###   ########.fr       */
+/*   Updated: 2016/09/29 13:54:08 by cglens           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,14 @@ int		main(int ac, char **av)
 		ft_putstr("Fractals disponibles : Julia, Mandelbrot");
 		return (0);
 	}
-	if (ft_strcmp(av[1], "Julia") == 0)
+	pt->e = av[1];
+	pt->key = 0;
+	if (ft_strcmp(pt->e, "Julia") == 0 ||
+			ft_strcmp(pt->e, "Lapin_de_Douady") == 0)
 		ft_init_julia(put, pt);
-	else if (ft_strcmp(av[1], "Mandelbrot") == 0)
-		ft_init_mandelbrot(put, pt);
+	if (ft_strcmp(pt->e, "Mandelbrot") == 0)
+		ft_init_mandel(put, pt);
 	else
-		ft_putstr("Fractales disponibles : Julia, Mandelbrot");
+		ft_putstr("Fractales disponibles : Julia, Mandelbrot, Lapin_de_Douady");
 	return (0);
 }
