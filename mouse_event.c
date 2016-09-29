@@ -6,7 +6,7 @@
 /*   By: cglens <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/22 23:13:43 by cglens            #+#    #+#             */
-/*   Updated: 2016/09/29 13:31:42 by cglens           ###   ########.fr       */
+/*   Updated: 2016/09/29 16:17:06 by cglens           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	zoom(int key, t_fractol *fractol, int x, int y)
 	{
 		x = (pt->x1 + pt->x0) * (fractol->put->win_x / 2);//== nb pxl/2
 		y = (pt->y1 + pt->y0) * (fractol->put->win_y / 2);//== nb pxl/2
+		printf("x : %d, y : %d\n", x, y);
 		fractol->pt->x0 -= x;
 		fractol->pt->y0 -= y;
 	}
@@ -45,20 +46,23 @@ int		julia_move(int x, int y, t_fractol *fractol)
 
 	put = fractol->put;
 	pt = fractol->pt;
-	mlx_destroy_image(fractol->put->mlx, fractol->put->img);
-	fractol->pt->c.r = 0;			//max 0.285
-	fractol->pt->c.i = 0;			//max 0.01
-	// MOTION NOTIFY \\/
-	ft_same(put, pt, fractol);
+	if (ft_strcmp(fractol->pt->e, "Julia") == 0)
+	{
+		mlx_destroy_image(fractol->put->mlx, fractol->put->img);
+	//	while (possible /*(%?)*/)
+	//	{
+			fractol->pt->c.r -= 0.0001 ;			//max 0.285
+			fractol->pt->c.i -= 0.001;			//max 0.01
+	//	}
+		ft_same(put, pt, fractol);
+	}
 	return (0);
 }
 
 int		mouse_event(int key, int x, int y, t_fractol *fractol)
 {
 	printf("x = %d, y = %d\n", x, y);
-	if (ft_strcmp(fractol->pt->e, "Julia") == 0)
-		julia_move(x, y, fractol);
-	if (key == 1 || key == 2)
-		zoom(key, fractol, x, y);
+//	if (key == 1 || key == 2)
+//		zoom(key, fractol, x, y);
 	return (0);
 }

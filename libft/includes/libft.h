@@ -6,7 +6,7 @@
 /*   By: cglens <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 19:31:16 by cglens            #+#    #+#             */
-/*   Updated: 2016/06/08 15:36:53 by cglens           ###   ########.fr       */
+/*   Updated: 2016/09/27 15:23:48 by cglens           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,5 @@ int					ft_absolut(int nb);
 int					ft_sqrt(int nb);
 void				*ft_swap(char *a, char *b);
 int					ft_factorielle(int nb);
+void				ft_bresenham(int x0, int y0, int x1, int y1);
 #endif

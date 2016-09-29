@@ -6,7 +6,7 @@
 /*   By: cglens <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/27 18:02:08 by cglens            #+#    #+#             */
-/*   Updated: 2016/09/29 14:07:39 by cglens           ###   ########.fr       */
+/*   Updated: 2016/09/29 16:26:32 by cglens           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,12 @@ void	ft_lapin(t_point *pt)
 
 void	ft_julia(t_point *pt)
 {
-	pt->c.r = 0.285;
-	pt->c.i = 0.01;
 	pt->z.r = pt->x / pt->zoom + pt->x0;
 	pt->z.i = pt->y / pt->zoom + pt->y0;
 }
 
 void	ft_same(t_graph *put, t_point *pt, t_fractol *fractol)
 {
-	int		nb_iter;
-
 	put->img = mlx_new_image(put->mlx, put->win_x, put->win_y);
 	put->data = mlx_get_data_addr(put->img, &put->bpp, &SIZELINE, &ENDIAN);
 	pt->x = 0;
@@ -66,7 +62,7 @@ void	ft_same(t_graph *put, t_point *pt, t_fractol *fractol)
 		{
 			if (ft_strcmp(pt->e, "Julia") == 0)
 				ft_julia(pt);
-			else if (ft_strcmp(pt->e, "Lapin_de_Douady") == 0)
+			if (ft_strcmp(pt->e, "Lapin_de_Douady") == 0)
 				ft_lapin(pt);
 			else if (ft_strcmp(pt->e, "Mandelbrot") == 0)
 				ft_mandel(pt);
@@ -76,6 +72,7 @@ void	ft_same(t_graph *put, t_point *pt, t_fractol *fractol)
 		}
 		pt->x++;
 	}
+	mlx_hook(put->win, 6, 1L<<6, julia_move, fractol);
 	mlx_key_hook(put->win, key_event, fractol);
 	mlx_mouse_hook(put->win, mouse_event, fractol);
 	mlx_put_image_to_window(put->mlx, put->win, put->img, 0, 0);
