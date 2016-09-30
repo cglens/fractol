@@ -6,7 +6,7 @@
 /*   By: cglens <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 00:01:35 by cglens            #+#    #+#             */
-/*   Updated: 2016/09/29 15:49:30 by cglens           ###   ########.fr       */
+/*   Updated: 2016/09/30 13:36:03 by cglens           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,25 +42,27 @@ typedef struct		s_complex
 
 typedef struct		s_point
 {	
+	char			*e;
+	double			x;
+	double			y;
 	double			x0;
 	double			y0;
 	double			x1;
 	double			y1;
+	double			zoom;
 	int 	   	 	step_x;
 	int				step_y;;
 	int				iter;
-	double			x;
-	double			y;
 	int				color;
 	int				rgb;
 	int				key;
-	double			zoom;
+	int				x_move;
+	int				y_move;
 	t_complex		c;
 	t_complex		z;
 	t_complex		step;
 	t_complex		origin;
 	t_complex		init;
-	char			*e;
 
 }					t_point;
 

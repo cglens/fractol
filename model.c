@@ -6,7 +6,7 @@
 /*   By: cglens <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/27 18:02:08 by cglens            #+#    #+#             */
-/*   Updated: 2016/09/29 16:26:32 by cglens           ###   ########.fr       */
+/*   Updated: 2016/09/30 14:17:18 by cglens           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	ft_same(t_graph *put, t_point *pt, t_fractol *fractol)
 		}
 		pt->x++;
 	}
-	mlx_hook(put->win, 6, 1L<<6, julia_move, fractol);
+	mlx_hook(put->win, 6, 1L << 6, julia_move, fractol);
 	mlx_key_hook(put->win, key_event, fractol);
 	mlx_mouse_hook(put->win, mouse_event, fractol);
 	mlx_put_image_to_window(put->mlx, put->win, put->img, 0, 0);

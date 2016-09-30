@@ -6,7 +6,7 @@
 /*   By: cglens <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/22 23:13:43 by cglens            #+#    #+#             */
-/*   Updated: 2016/09/29 16:17:06 by cglens           ###   ########.fr       */
+/*   Updated: 2016/09/30 14:39:52 by cglens           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,20 @@ void	zoom(int key, t_fractol *fractol, int x, int y)
 	mlx_destroy_image(fractol->put->mlx, fractol->put->img);
 	if (key == 1)
 	{
-		x = (pt->x1 + pt->x0) * (fractol->put->win_x / 2);//== nb pxl/2
-		y = (pt->y1 + pt->y0) * (fractol->put->win_y / 2);//== nb pxl/2
 		printf("x : %d, y : %d\n", x, y);
-		fractol->pt->x0 -= x;
-		fractol->pt->y0 -= y;
+		fractol->pt->x0 = -0.75;
+		fractol->pt->y0 = 0.5;
+		fractol->pt->x1 = -0.625;
+		fractol->pt->y1 = 0.625;
 	}
 	if (key == 2)
 	{
-		x = (pt->x1 + pt->x0) * (fractol->put->win_x / 2);//== nb pxl/2
-		y = (pt->y1 + pt->y0) * (fractol->put->win_y / 2);//== nb pxl/2
+		x = (pt->x1 + pt->x0) * (fractol->put->win_x / 2);
+		y = (pt->y1 + pt->y0) * (fractol->put->win_y / 2);
 		fractol->pt->x0 += x;
 		fractol->pt->y0 += y;
 	}
 	ft_same(put, pt, fractol);
-	// calculer les coordonnees des nouveaux points grace aux X | Y renvoye par la mlx et faire des bailles de divisions et passer par des conversions pixel/plan
 }
 
 int		julia_move(int x, int y, t_fractol *fractol)
@@ -49,13 +48,20 @@ int		julia_move(int x, int y, t_fractol *fractol)
 	if (ft_strcmp(fractol->pt->e, "Julia") == 0)
 	{
 		mlx_destroy_image(fractol->put->mlx, fractol->put->img);
-	//	while (possible /*(%?)*/)
-	//	{
-			fractol->pt->c.r -= 0.0001 ;			//max 0.285
-			fractol->pt->c.i -= 0.001;			//max 0.01
-	//	}
+		if (x < pt->x_move && y < pt->y_move)
+		{
+			fractol->pt->c.r += 0.0001;
+			fractol->pt->c.i += 0.001;
+		}
+		else
+		{
+			fractol->pt->c.r -= 0.0001;
+			fractol->pt->c.i -= 0.001;
+		}
 		ft_same(put, pt, fractol);
 	}
+	pt->x_move = x;
+	pt->y_move = y;
 	return (0);
 }
 

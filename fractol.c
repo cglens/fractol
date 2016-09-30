@@ -6,7 +6,7 @@
 /*   By: cglens <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/23 01:24:31 by cglens            #+#    #+#             */
-/*   Updated: 2016/09/29 13:54:08 by cglens           ###   ########.fr       */
+/*   Updated: 2016/09/30 14:16:31 by cglens           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@ int		main(int ac, char **av)
 	}
 	pt->e = av[1];
 	pt->key = 0;
+	pt->x_move = 0;
+	pt->y_move = 0;
+	put->mlx = mlx_init();
+	put->win = mlx_new_window(put->mlx, 2000, 1250, "fractol");
 	if (ft_strcmp(pt->e, "Julia") == 0 ||
 			ft_strcmp(pt->e, "Lapin_de_Douady") == 0)
 		ft_init_julia(put, pt);
