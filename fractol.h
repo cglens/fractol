@@ -6,7 +6,7 @@
 /*   By: cglens <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 00:01:35 by cglens            #+#    #+#             */
-/*   Updated: 2016/10/05 15:33:14 by cglens           ###   ########.fr       */
+/*   Updated: 2016/10/05 19:14:28 by cglens           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ typedef struct		s_graph
 	int				endian;
 	int				sizeline;
 	char			*data;
+	void			*mlx_2;
+	void			*win_2;
 }					t_graph;
 
 typedef struct		s_complex
@@ -73,6 +75,7 @@ typedef struct		s_fractol
 }					t_fractol;
 
 int					ft_error(void);
+void				ft_win_2(t_graph *put);
 int					key_event(int key, t_fractol *fractol);
 int					julia_move(int x, int y, t_fractol *fractol);
 int					mouse_event(int key, int x, int y, t_fractol *fractol);

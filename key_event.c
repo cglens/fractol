@@ -6,7 +6,7 @@
 /*   By: cglens <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/05 15:18:05 by cglens            #+#    #+#             */
-/*   Updated: 2016/10/05 15:18:07 by cglens           ###   ########.fr       */
+/*   Updated: 2016/10/05 19:15:14 by cglens           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,7 @@ int		key_event(int key, t_fractol *fractol)
 		ft_change(key, put, pt);
 	if (key == 15 || key == 5 || key == 11)
 		ft_color(key, put, pt);
+	if (key == 4)
+		ft_win_2(put);
 	return (0);
 }
