@@ -6,7 +6,7 @@
 /*   By: cglens <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 00:01:35 by cglens            #+#    #+#             */
-/*   Updated: 2016/09/30 13:36:03 by cglens           ###   ########.fr       */
+/*   Updated: 2016/10/05 15:33:14 by cglens           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct		s_complex
 }					t_complex;
 
 typedef struct		s_point
-{	
+{
 	char			*e;
 	double			x;
 	double			y;
@@ -50,12 +50,12 @@ typedef struct		s_point
 	double			x1;
 	double			y1;
 	double			zoom;
-	int 	   	 	step_x;
-	int				step_y;;
+	double			zoom_event;
 	int				iter;
 	int				color;
 	int				rgb;
 	int				key;
+	int				save;
 	int				x_move;
 	int				y_move;
 	t_complex		c;
@@ -72,16 +72,18 @@ typedef struct		s_fractol
 	t_graph			*put;
 }					t_fractol;
 
-void				ft_init_mandel(t_graph *put, t_point *pt);
-void				ft_init_julia(t_graph *put, t_point *pt);
+int					ft_error(void);
 int					key_event(int key, t_fractol *fractol);
 int					julia_move(int x, int y, t_fractol *fractol);
 int					mouse_event(int key, int x, int y, t_fractol *fractol);
-void				pixel(t_point *pt, t_graph *put, int x, int y);
+void				ft_init_model(t_graph *put, t_point *pt);
+void				ft_same(t_graph *put, t_point *pt, t_fractol *fractol);
+void				go_init(t_point *pt);
 void				ft_mandel(t_point *pt);
 void				ft_julia(t_point *pt);
+void				ft_julia_2(t_point *pt);
 void				ft_lapin(t_point *pt);
-void				ft_same(t_graph *put, t_point *pt, t_fractol *fractol);
+void				pixel(t_point *pt, t_graph *put, int x, int y);
 void				ft_color(int key, t_graph *put, t_point *pt);
 
 #endif

@@ -6,18 +6,18 @@
 #    By: cglens <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/27 17:25:06 by cglens            #+#    #+#              #
-#    Updated: 2016/09/29 13:47:27 by cglens           ###   ########.fr        #
+#    Updated: 2016/10/05 14:57:02 by cglens           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = gcc 
 
 SRC = fractol.c\
-	  init.c\
-	  model.c\
+	  main.c\
 	  mouse_event.c\
 	  key_event.c\
 	  color.c\
+	  init_model.c
 
 OBJ = $(SRC:.c=.o) 
 
