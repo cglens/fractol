@@ -6,7 +6,7 @@
 /*   By: cglens <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 00:01:35 by cglens            #+#    #+#             */
-/*   Updated: 2016/10/23 13:54:48 by cglens           ###   ########.fr       */
+/*   Updated: 2016/10/23 18:09:25 by cglens           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <stdlib.h>
 # include <math.h>
 # include "mlx.h"
-//# include "X.h"
 # include "libft.h"
 # define SIZELINE put->sizeline
 # define ENDIAN put->endian
