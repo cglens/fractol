@@ -6,7 +6,7 @@
 #    By: cglens <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/27 17:25:06 by cglens            #+#    #+#              #
-#    Updated: 2016/10/05 14:57:02 by cglens           ###   ########.fr        #
+#    Updated: 2016/10/23 13:16:39 by cglens           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ EXEC = fractol
 
 $(NAME) :
 	make -C libft	
-	gcc -g  -lmlx -framework OpenGL -framework AppKit -o $(EXEC) libft/libft.a $(SRC)
+	gcc -lmlx -framework OpenGL -framework AppKit -o $(EXEC) libft/libft.a $(SRC) -I libft/includes
 clean:
 	rm -f $(OBJ) $(EXEC)
 	make clean -C libft

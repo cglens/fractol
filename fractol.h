@@ -6,7 +6,7 @@
 /*   By: cglens <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 00:01:35 by cglens            #+#    #+#             */
-/*   Updated: 2016/10/05 19:14:28 by cglens           ###   ########.fr       */
+/*   Updated: 2016/10/23 13:54:48 by cglens           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@
 # include <stdlib.h>
 # include <math.h>
 # include "mlx.h"
-# include "X.h"
-# include "../libft/includes/libft.h"
+//# include "X.h"
+# include "libft.h"
 # define SIZELINE put->sizeline
 # define ENDIAN put->endian
+# define W 1600
+# define H 1000
 
 typedef struct		s_graph
 {
@@ -51,21 +53,21 @@ typedef struct		s_point
 	double			y0;
 	double			x1;
 	double			y1;
-	double			zoom;
-	double			zoom_event;
+	double			x2;
+	double			y2;
+	double			zoom_x;
+	double			zoom_y;
+	float			scale;
 	int				iter;
 	int				color;
 	int				rgb;
+	float			frequency;
 	int				key;
-	int				save;
+	int				save_color;
 	int				x_move;
 	int				y_move;
 	t_complex		c;
 	t_complex		z;
-	t_complex		step;
-	t_complex		origin;
-	t_complex		init;
-
 }					t_point;
 
 typedef struct		s_fractol
@@ -77,7 +79,9 @@ typedef struct		s_fractol
 int					ft_error(void);
 void				ft_win_2(t_graph *put);
 int					key_event(int key, t_fractol *fractol);
+void				move_fractol(t_graph *put, t_point *pt, t_fractol *fractol);
 int					julia_move(int x, int y, t_fractol *fractol);
+int					ft_move(int x, int y, t_fractol *fractol);
 int					mouse_event(int key, int x, int y, t_fractol *fractol);
 void				ft_init_model(t_graph *put, t_point *pt);
 void				ft_same(t_graph *put, t_point *pt, t_fractol *fractol);
@@ -87,6 +91,10 @@ void				ft_julia(t_point *pt);
 void				ft_julia_2(t_point *pt);
 void				ft_lapin(t_point *pt);
 void				pixel(t_point *pt, t_graph *put, int x, int y);
-void				ft_color(int key, t_graph *put, t_point *pt);
+void				psych(t_point *pt, t_graph *put, int x, int y);
+void				ft_color(int key, t_graph *put, t_point *pt,
+		t_fractol *fractol);
+void				freq(int key, t_graph *put, t_point *pt,
+		t_fractol *fractol);
 
 #endif

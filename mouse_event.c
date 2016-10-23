@@ -6,36 +6,49 @@
 /*   By: cglens <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/05 15:17:29 by cglens            #+#    #+#             */
-/*   Updated: 2016/10/05 19:26:16 by cglens           ###   ########.fr       */
+/*   Updated: 2016/10/23 13:19:14 by cglens           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
+void	zoom_init(int key, t_point *pt, int x, int y)
+{
+	double		tmp_x;
+	double		tmp_y;
+
+	tmp_x = ((double)x / pt->zoom_x + pt->x0);
+	tmp_y = ((double)y / pt->zoom_y + pt->y0);
+	if (key == 1 || key == 4)
+	{
+		pt->zoom_x *= 1.3;
+		pt->zoom_y *= 1.3;
+		pt->x0 = tmp_x - ((double)x / pt->zoom_x);
+		pt->y0 = tmp_y - ((double)y / pt->zoom_y);
+		pt->iter += 2;
+		pt->scale -= 0.01;
+	}
+	if (key == 2 || key == 5)
+	{
+		pt->zoom_x *= 0.7;
+		pt->zoom_y *= 0.7;
+		pt->x0 = tmp_x - ((double)x / pt->zoom_x);
+		pt->y0 = tmp_y - ((double)y / pt->zoom_y);
+		pt->iter -= 2;
+		pt->scale += 0.01;
+	}
+}
+
 void	zoom(int key, t_fractol *fractol, int x, int y)
 {
-	double		W;
-	double		H;
 	t_graph		*put;
 	t_point		*pt;
-	double		x2;
-	double		y2;
 
 	put = fractol->put;
 	pt = fractol->pt;
-	mlx_destroy_image(fractol->put->mlx, fractol->put->img);
-	W = 2000;
-	H = 1250;
-	x2 = x / W;
-	y2 = y / H;
-	fractol->pt->zoom += 100;
-	if (key == 1)
-	{
-		printf("AVANT -> x0 : %f, y0 : %f, x1 : %f, y1 : %f\n", fractol->pt->x0, fractol->pt->y0, fractol->pt->x1, fractol->pt->y1);
-		fractol->pt->x0 = (fractol->pt->x0 * x2) - (x2) / 2;
-		fractol->pt->y0 = (fractol->pt->y0 * y2) - (y2) / 2;
-		printf("APRES -> x0 : %f, y0 : %f, x1 : %f, y1 : %f\n", fractol->pt->x0, fractol->pt->y0, fractol->pt->x1, fractol->pt->y1);
-	}
+	ft_bzero(put->mlx, put->sizeline);
+	if (y > 0 && 10 < pt->iter && pt->iter < 300)
+		zoom_init(key, pt, x, y);
 	ft_same(put, pt, fractol);
 }
 
@@ -46,30 +59,49 @@ int		julia_move(int x, int y, t_fractol *fractol)
 
 	put = fractol->put;
 	pt = fractol->pt;
-	if (fractol->pt->key == 49)
+	if (pt->key == 49)
 	{
-		mlx_destroy_image(fractol->put->mlx, fractol->put->img);
+		ft_bzero(put->mlx, put->sizeline);
+		if (0 < x && x < 2000 && 0 < y && y < 1250)
+		{
+			pt->c.r = (double)x / W * 4 - 3;
+			pt->c.i = (double)y / H * 4 - 3;
+			ft_same(put, pt, fractol);
+		}
+	}
+	return (0);
+}
+
+int		ft_move(int x, int y, t_fractol *fractol)
+{
+	t_graph		*put;
+	t_point		*pt;
+
+	put = fractol->put;
+	pt = fractol->pt;
+	if (pt->key == 49)
+	{
+		ft_bzero(put->mlx, put->sizeline);
 		if (x < pt->x_move || y < pt->y_move)
 		{
-			fractol->pt->c.r += 0.0001;
-			fractol->pt->c.i += 0.001;
+			pt->c.r += 0.0001;
+			pt->c.i += 0.001;
 		}
 		else
 		{
-			fractol->pt->c.r -= 0.0001;
-			fractol->pt->c.i -= 0.001;
+			pt->c.r -= 0.0001;
+			pt->c.i -= 0.001;
 		}
+		ft_same(put, pt, fractol);
 		pt->x_move = x;
 		pt->y_move = y;
-		ft_same(put, pt, fractol);
 	}
 	return (0);
 }
 
 int		mouse_event(int key, int x, int y, t_fractol *fractol)
 {
-	printf("x = %d, y = %d\n", x, y);
-	if (key == 1 || key == 2)
+	if (key == 1 || key == 2 || key == 4 || key == 5)
 		zoom(key, fractol, x, y);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: cglens <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/03 18:54:39 by cglens            #+#    #+#             */
-/*   Updated: 2016/10/05 13:18:49 by cglens           ###   ########.fr       */
+/*   Updated: 2016/10/20 18:07:08 by cglens           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	ft_mandel(t_point *pt)
 {
-	pt->c.r = pt->x / pt->zoom + pt->x0;
-	pt->c.i = pt->y / pt->zoom + pt->y0;
+	pt->c.r = pt->x / pt->zoom_x + pt->x0;
+	pt->c.i = pt->y / pt->zoom_y + pt->y0;
 	pt->z.r = 0;
 	pt->z.i = 0;
 }
@@ -27,8 +27,8 @@ void	ft_lapin(t_point *pt)
 		pt->c.r = -0.123;
 		pt->c.i = 0.745;
 	}
-	pt->z.r = pt->x / pt->zoom + pt->x0;
-	pt->z.i = pt->y / pt->zoom + pt->y0;
+	pt->z.r = pt->x / pt->zoom_x + pt->x0;
+	pt->z.i = pt->y / pt->zoom_y + pt->y0;
 }
 
 void	ft_julia(t_point *pt)
@@ -38,8 +38,8 @@ void	ft_julia(t_point *pt)
 		pt->c.r = 0.285;
 		pt->c.i = 0.01;
 	}
-	pt->z.r = pt->x / pt->zoom + pt->x0;
-	pt->z.i = pt->y / pt->zoom + pt->y0;
+	pt->z.r = pt->x / pt->zoom_x + pt->x0;
+	pt->z.i = pt->y / pt->zoom_y + pt->y0;
 }
 
 void	ft_julia_2(t_point *pt)
@@ -49,8 +49,8 @@ void	ft_julia_2(t_point *pt)
 		pt->c.r = -0.223;
 		pt->c.i = 0.745;
 	}
-	pt->z.r = pt->x / pt->zoom + pt->x0;
-	pt->z.i = pt->y / pt->zoom + pt->y0;
+	pt->z.r = pt->x / pt->zoom_x + pt->x0;
+	pt->z.i = pt->y / pt->zoom_y + pt->y0;
 }
 
 void	go_init(t_point *pt)
